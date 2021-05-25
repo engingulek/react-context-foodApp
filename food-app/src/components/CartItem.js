@@ -7,12 +7,18 @@ const CartItem = (props)=>{
    const marker ="==>"
    const context = useContext(CartContext)
    const addItem = (item)=>{
-    context .addItem({
+    context.addItem({
            id:item.id,
            name:item.name,
            amount:1,
            price:item.price
        })
+   }
+
+   const removeItem = (item)=>{
+    context.removeItem(item.id)
+   
+      
    }
     return (
         <li style={{listStyle:"none"}} >
@@ -28,7 +34,7 @@ const CartItem = (props)=>{
         <Button onClick={()=>addItem(props)}>
         +
         </Button>
-        <Button>
+        <Button onClick={()=>removeItem(props)}>
         -
         
         </Button>
