@@ -1,8 +1,19 @@
 
+import { useContext } from "react"
 import styled from "styled-components"
+import CartContext from "../store/context"
 
 const CartItem = (props)=>{
    const marker ="==>"
+   const context = useContext(CartContext)
+   const addItem = (item)=>{
+    context .addItem({
+           id:item.id,
+           name:item.name,
+           amount:1,
+           price:item.price
+       })
+   }
     return (
         <li style={{listStyle:"none"}} >
         <ProductContainer>
@@ -10,11 +21,11 @@ const CartItem = (props)=>{
      {marker} {props.name}
         </ProductName>
         <ProductPrice>
-        {props.price} x 1 = {props.price * 1} 
+        {props.price} x {props.amount} = {props.price * props.amount} 
         </ProductPrice>
         </ProductContainer>
         <RemoveandAdd>
-        <Button>
+        <Button onClick={()=>addItem(props)}>
         +
         </Button>
         <Button>

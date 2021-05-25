@@ -6,17 +6,21 @@ import styled from "styled-components";
 
 const Cart = (props) => {
   const context = useContext(CartContext);
+console.log()
 
   const cartItem = (
       <ul >
      { context.cartItem.map((item)=>(
         <CartItem 
         key = {item.id}
+        id = {item.id}
         name = {item.name}
         description = {item.description}
         price = {item.price}
+        amount = {item.amount}
         
         />
+      
 
      ))}
       </ul>
@@ -28,10 +32,11 @@ const Cart = (props) => {
 
 
   return (
+   
     <Modal onClose={props.onClose}>
     {cartItem}
     <TotalAmount>
-    Total Amount : 20.00₺
+    Total Amount : {context.totalAmount}
     </TotalAmount>
     <ButtonsGroup>
     <CloseButton onClick={props.onClose} >

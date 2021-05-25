@@ -9,7 +9,14 @@ const Card = props => {
   
   
 const addCart = (item)=>{
-  context.addItem(item)
+  context.addItem({
+    id:item.id,
+    name:item.name,
+    amount: 1,
+    price: props.price
+
+  })
+  
   
 
 }

@@ -16,6 +16,7 @@ const FoodItem = () => {
         description={food.description}
         img={food.img}
         price = {food.price}
+        qunatity= {food.quantity}
         />
     ))
     return <Section >
