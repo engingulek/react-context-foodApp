@@ -5,7 +5,10 @@ const Header = props => {
     return (
         <Fragment>
         <Headers>
+        <span>
         Food App
+        </span>
+       
         <CartButton onClick={props.onShowCart}/>
         </Headers>
         
@@ -24,6 +27,9 @@ background-color: orange;
 padding-top:15px;
 padding-bottom: 15px;
 color: white;
+span{
+    cursor: pointer;
+}
 
 `
 export default Header

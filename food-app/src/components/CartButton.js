@@ -13,6 +13,7 @@ font-size: 25px;
 padding: 10px 60px;
 border: none;
 border-radius: 99px;
+cursor: pointer;
 
 `
 

@@ -1,16 +1,101 @@
-import React, { useContext} from 'react'
-import Modal from './Modal'
-import CartContext from "../store/context"
-const Cart = props => {
-    const context = useContext(CartContext)
-    console.log(context.cartItem)
+import React, { useContext } from "react";
+import Modal from "./Modal";
+import CartContext from "../store/context";
+import CartItem from "./CartItem";
+import styled from "styled-components";
 
+const Cart = (props) => {
+  const context = useContext(CartContext);
+
+  const cartItem = (
+      <ul >
+     { context.cartItem.map((item)=>(
+        <CartItem 
+        key = {item.id}
+        name = {item.name}
+        description = {item.description}
+        price = {item.price}
+        
+        />
+
+     ))}
+      </ul>
+  
+  )
+
+
+
+
+
+  return (
+    <Modal onClose={props.onClose}>
+    {cartItem}
+    <TotalAmount>
+    Total Amount : 20.00₺
+    </TotalAmount>
+    <ButtonsGroup>
+    <CloseButton onClick={props.onClose} >
+    Close
+    </CloseButton>
+    <OrderButton >
+    Order
+    </OrderButton>
     
-    return (
-        <Modal onClose={props.onClose}>
- 
-        </Modal>
-    )
-}
+    </ButtonsGroup>
+  
+   
+    </Modal>
+  );
+};
 
-export default Cart
+const TotalAmount = styled.div`
+display:flex;
+align-items:center;
+justify-content: center;
+border-top:4px solid orange;
+margin-left: 25px;
+padding-top: 20px;
+font-size: 24px;
+font-weight: bold;
+`
+
+const ButtonsGroup = styled.div`
+float: right;
+margin-top: 10px;
+
+
+
+`
+const SameButton = styled.button`
+padding: 10px 20px;
+font-size: 20px;
+border-radius: 10px;
+border:none;
+border: 1px solid orange;
+cursor: pointer;
+
+`
+
+const CloseButton = styled(SameButton)`
+ margin-right: 20px; 
+ background-color: white;
+ color:orange;
+
+ 
+ 
+ :hover{
+     background-color: #e1701a;
+     color:white;
+ }
+`
+const OrderButton = styled(SameButton)`
+ background-color: orange;
+ color:white;
+
+ :hover{
+     background-color: #e1701a;
+     color:white;
+ }
+
+`
+export default Cart;
