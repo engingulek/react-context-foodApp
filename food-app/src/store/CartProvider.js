@@ -7,8 +7,18 @@ const defaultCartState = {
 
 const cartReducer = (state, action) => {
   if (action.type === "ADD") {
-    console.log(action.item);
+   let updateItems = state.cartItem.concat(action.item)
+   
+
+   return {
+     cartItem:updateItems,
+   }
+
+  
+   
   }
+
+ 
 };
 
 const CartProvider = (props) => {
@@ -54,6 +64,7 @@ const CartProvider = (props) => {
     ],
 
     addItem: addItemToCart,
+    cartItem:cartState.cartItem
   };
 
   return (

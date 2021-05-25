@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext} from "react";
 import styled from "styled-components";
 import CartContext from "../store/context"
 
@@ -10,7 +10,12 @@ const Card = props => {
   
 const addCart = (item)=>{
   context.addItem(item)
+  
+
 }
+
+
+
   return (
      
       <CardContainer>
