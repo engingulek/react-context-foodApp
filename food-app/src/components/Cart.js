@@ -6,7 +6,7 @@ import styled from "styled-components";
 
 const Cart = (props) => {
   const context = useContext(CartContext);
-console.log()
+
 
   const cartItem = (
       <ul >
@@ -28,7 +28,16 @@ console.log()
   )
 
 
+const orderHandler = async ()=>{
+ await fetch('https://react-http-180ce-default-rtdb.firebaseio.com/orderFood.json',{
+   method:"POST",
+   body:JSON.stringify({
+     orderItems:context.cartItem
+   })
+ })
 
+ context.clearCart()
+}
 
 
   return (
@@ -42,7 +51,7 @@ console.log()
     <CloseButton onClick={props.onClose} >
     Close
     </CloseButton>
-    <OrderButton >
+    <OrderButton onClick = {orderHandler} >
     Order
     </OrderButton>
     
