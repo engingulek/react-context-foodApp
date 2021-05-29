@@ -1,12 +1,12 @@
-import React, { useContext, useEffect, useState  } from 'react'
+import React, { useEffect, useState  } from 'react'
 import Card from './Card'
 import styled from 'styled-components'
-import CartContext from "../store/context"
+
 
 
 const FoodItem = () => {
 const [foodList, setFoodList] = useState([])
-  const context = useContext(CartContext)
+
 
 useEffect(() => {
 const fetchFood = async  ()=>{
@@ -17,7 +17,7 @@ const fetchFood = async  ()=>{
     throw new Error ("Something  went wrong")
   }
   const responseData = await response.json()
-  console.log(responseData)
+  
   const responseFood = [];
   for (const key in responseData)
   {
@@ -32,7 +32,7 @@ const fetchFood = async  ()=>{
     })
   }
 
-  console.log(responseFood)
+
   setFoodList(responseFood)
 
 }

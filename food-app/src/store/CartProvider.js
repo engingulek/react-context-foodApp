@@ -45,7 +45,7 @@ const cartReducer = (state, action) => {
     const existingCartItem = state.cartItem[existingCartItemIndex];
     const updatedTotalAmount = state.totalAmount -existingCartItem.price
     let updatedItems;
-    console.log(existingCartItem.amount)
+    
     if(existingCartItem.amount===1)
     {
       updatedItems= state.cartItem.filter((item)=>item.id!==action.id)
@@ -79,7 +79,7 @@ const CartProvider = (props) => {
   };
 
   const removeItemFromCart = (id)=>{
-console.log(id)
+
   dispatchCartAction({type:"REMOVE",id:id})
   }
 

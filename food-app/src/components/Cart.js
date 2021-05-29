@@ -39,7 +39,6 @@ const orderHandler = async ()=>{
  context.clearCart()
 }
 
-
   return (
    
     <Modal onClose={props.onClose}>
@@ -51,9 +50,10 @@ const orderHandler = async ()=>{
     <CloseButton onClick={props.onClose} >
     Close
     </CloseButton>
-    <OrderButton onClick = {orderHandler} >
+    {context.totalAmount!==0 &&  <OrderButton onClick = {orderHandler} >
     Order
-    </OrderButton>
+    </OrderButton>}
+   
     
     </ButtonsGroup>
   
