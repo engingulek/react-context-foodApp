@@ -1,14 +1,50 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState  } from 'react'
 import Card from './Card'
 import styled from 'styled-components'
 import CartContext from "../store/context"
 
+
 const FoodItem = () => {
+const [foodList, setFoodList] = useState([])
   const context = useContext(CartContext)
+
+useEffect(() => {
+const fetchFood = async  ()=>{
+  
+  const response = await fetch('https://react-http-180ce-default-rtdb.firebaseio.com/meals.json')
+  if(!response.ok)
+  {
+    throw new Error ("Something  went wrong")
+  }
+  const responseData = await response.json()
+  console.log(responseData)
+  const responseFood = [];
+  for (const key in responseData)
+  {
+    console.log()
+    responseFood.push({
+      id:key,
+      name:responseData[key].name,
+      description:responseData[key].description,
+      price:responseData[key].price,
+      img:responseData[key].img
+
+    })
+  }
+
+  console.log(responseFood)
+  setFoodList(responseFood)
+
+}
+
+fetchFood().catch((error)=>{
+  console.log(error.message)
+})
+}, [])
   
 
 
-    const foodList= context.FOOD_LIST.map((food)=>(
+    const foodLists= foodList.map((food)=>(
         <Card 
         key={food.id}
         id={food.id}
@@ -16,11 +52,11 @@ const FoodItem = () => {
         description={food.description}
         img={food.img}
         price = {food.price}
-        qunatity= {food.quantity}
+      
         />
     ))
     return <Section >
-    {foodList}
+    {foodLists}
     </Section>
    
         
